@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城东污水处理厂 · 智能监测平台</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 4.6 6.2 7.7 6.2 10.2A6.2 6.2 0 0 1 5.8 13.2C5.8 10.7 8 7.6 12 3z"/><path d="M9.2 13.6a2.9 2.9 0 0 0 2.9 2.9"/></svg>
+      </span>
+      <div class="brand-text">
+        <strong>城东污水处理厂</strong>
+        <span>智能监测平台 · v2.4</span>
+      </div>
+    </div>
+
+    <div class="nav-group-label">监测中心</div>
+    <nav class="nav">
+      <button class="nav-item active" data-page="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.6V21h13V9.6"/><path d="M10 21v-6h4v6"/></svg>
+        <span>首页总览</span>
+      </button>
+      <button class="nav-item" data-page="model3d">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 21 7.6v8.8L12 21.2 3 16.4V7.6z"/><path d="M3 7.6 12 12.4l9-4.8"/><path d="M12 12.4v8.8"/></svg>
+        <span>3D 厂区模型</span>
+      </button>
+      <button class="nav-item" data-page="water">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 4.6 6.2 7.7 6.2 10.2A6.2 6.2 0 0 1 5.8 13.2C5.8 10.7 8 7.6 12 3z"/><path d="M9 13.4a3 3 0 0 0 3 3"/></svg>
+        <span>实时水质监测</span>
+      </button>
+      <button class="nav-item" data-page="process">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1.6"/><rect x="14" y="4" width="7" height="7" rx="1.6"/><rect x="8.5" y="14" width="7" height="6.5" rx="1.6"/><path d="M10 7.5h4"/><path d="M17.5 11v2.2a1.6 1.6 0 0 1-1.6 1.6h-.4"/><path d="M6.5 11v2.2a1.6 1.6 0 0 0 1.6 1.6h.4"/></svg>
+        <span>工艺运行监控</span>
+      </button>
+      <button class="nav-item" data-page="efficiency">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20V11M10 20V6M15 20v-6M20 20V9"/></svg>
+        <span>去除效率分析</span>
+      </button>
+    </nav>
+
+    <div class="nav-group-label">智能分析</div>
+    <nav class="nav">
+      <button class="nav-item" data-page="ai">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.4 20.3h19.2L12 3z"/><path d="M12 9.4v4.4"/><path d="M12 16.9h.01"/></svg>
+        <span>AI 预测与预警</span>
+        <span class="nav-badge">3</span>
+      </button>
+      <button class="nav-item" data-page="history">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.2V12l3.4 2"/></svg>
+        <span>历史数据查询</span>
+      </button>
+      <button class="nav-item" data-page="chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 12a8 8 0 0 1-8 8H8.4l-5 3 1.4-4.8A8 8 0 1 1 20.6 12z"/><path d="M8.8 11.4h6.4M8.8 14.6h4"/></svg>
+        <span>AI 智能问答</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="plant-status">
+        <span class="pulse"></span>
+        <div>
+          <strong>系统在线运行</strong>
+          <span>数据源 12 个 · 全部正常</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="page-title-wrap">
+        <h1 id="pageTitle">首页总览</h1>
+        <p id="pageDesc">厂区运行状态与关键指标一览</p>
+      </div>
+      <div class="top-right">
+        <span class="live-pill"><i></i>实时数据 · 3s 刷新</span>
+        <div class="clock-box">
+          <strong id="clockTime">--:--:--</strong>
+          <span id="clockDate">----年--月--日</span>
+        </div>
+        <div class="avatar">运</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- 1. 首页总览 -->
+      <section class="page active" id="page-home">
+        <div class="kpi-grid" id="homeKpi"></div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <div><h3>进出水流量趋势</h3><p class="sub">近 24 小时 · 单位 m³/h</p></div>
+              <span class="tag-live"><i></i>实时</span>
+            </div>
+            <div id="homeFlowChart"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h3>出水综合达标率</h3><p class="sub">近 30 日统计 · GB18918-2002 一级 A</p></div>
+            </div>
+            <div id="homeGauge"></div>
+            <div class="mini-stats" id="homeMiniStats"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <div><h3>主要污染物进出水对比</h3><p class="sub">当前时刻 · 单位 mg/L · 虚线为一级 A 排放标准</p></div>
+            </div>
+            <div id="homeBar"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h3>实时预警</h3><p class="sub">在线监测 + AI 异常识别</p></div>
+              <span class="badge-warn" id="homeAlertCount"></span>
+            </div>
+            <div class="alert-list" id="homeAlerts"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div><h3>关键指标实时状态</h3><p class="sub">出水浓度对比一级 A 排放标准</p></div>
+          </div>
+          <div class="ind-grid" id="homeIndGrid"></div>
+        </div>
+      </section>
+
+      <!-- 2. 3D 厂区模型 -->
+      <section class="page" id="page-model3d">
+        <div class="twin">
+          <aside class="twin-side">
+            <div class="twin-side-title">厂区基础数据</div>
+            <div class="twin-mini-grid" id="twinMini"></div>
+            <div class="twin-divider"></div>
+            <div class="twin-side-title">运行统计</div>
+            <div class="twin-stats" id="twinStats"></div>
+            <div class="twin-divider"></div>
+            <div class="twin-side-title">状态图例</div>
+            <div class="twin-legend">
+              <span><i class="dot ok"></i>正常运行</span>
+              <span><i class="dot warn"></i>预警</span>
+              <span><i class="dot bad"></i>超标</span>
+            </div>
+            <div class="twin-hint">拖拽旋转 · 滚轮缩放 · 点击构筑物查看参数</div>
+          </aside>
+          <div class="twin-main">
+            <div class="twin-stage" id="twinStage">
+              <canvas id="twinCanvas"></canvas>
+              <div class="twin-labels" id="twinLabels"></div>
+              <div class="twin-hud">
+                <div class="hud-left"><span class="hud-dot"></span>厂区三维模型 · 数字孪生</div>
+                <div class="hud-right">
+                  <span>安全运行</span><b>1,472</b><span>天</span>
+                  <em>|</em>
+                  <span>今日异常</span><b class="warn">2</b><span>次</span>
+                </div>
+              </div>
+              <div class="twin-tools">
+                <button id="twinRotate" class="on">自动旋转</button>
+                <button id="twinReset">重置视角</button>
+              </div>
+              <div class="twin-tip" id="twinTip"></div>
+            </div>
+            <div class="twin-bottom" id="twinBottom"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 实时水质监测 -->
+      <section class="page" id="page-water">
+        <div class="chips" id="waterTabs"></div>
+
+        <div class="grid-2 wide-left">
+          <div class="card">
+            <div class="card-head">
+              <div><h3 id="waterChartTitle">COD 进出水变化趋势</h3><p class="sub">近 24 小时 · 30 分钟粒度</p></div>
+              <span class="tag-live"><i></i>LIVE</span>
+            </div>
+            <div id="waterChart"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h3>当前读数</h3><p class="sub" id="waterUpdate"></p></div>
+            </div>
+            <div id="waterCurrent"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div><h3>各指标实时达标情况</h3><p class="sub">进水 / 出水 / 去除率 / 排放限值</p></div>
+          </div>
+          <div class="table-wrap" id="waterTable"></div>
+        </div>
+      </section>
+
+      <!-- 4. 工艺运行监控 -->
+      <section class="page" id="page-process">
+        <div class="card">
+          <div class="card-head">
+            <div><h3>设计工艺流程</h3><p class="sub">点击任一处理单元查看该环节关键运行参数</p></div>
+            <span class="tag-live"><i></i>运行中</span>
+          </div>
+          <div class="schematic-wrap" id="flowSchematic"></div>
+          <div class="schematic-legend">
+            <span><i style="background:#7ba0b8"></i>水体管线</span>
+            <span><i style="background:#c08a4a"></i>污泥管线</span>
+            <span><i style="background:#2f7cf6"></i>回流污泥</span>
+            <span><i style="background:#9aa9b8"></i>上清液回流</span>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <div><h3 id="unitTitle">奥贝尔氧化沟 · 运行参数</h3><p class="sub" id="unitSub"></p></div>
+            </div>
+            <div class="table-wrap" id="unitParams"></div>
+            <div id="unitChart"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h3>设备运行状态</h3><p class="sub">在线设备实时监控</p></div>
+            </div>
+            <div id="equipList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 去除效率分析 -->
+      <section class="page" id="page-efficiency">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div><h3>各污染物去除率</h3><p class="sub">当前实际值 vs 设计目标</p></div></div>
+            <div id="effBar"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>去除效果雷达对比</h3><p class="sub">数值越接近外圈表示去除越彻底</p></div></div>
+            <div id="effRadar"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>近 7 日去除率变化</h3><p class="sub">COD / 氨氮 / 总磷</p></div></div>
+          <div id="effTrend"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>污染物去除效果明细</h3><p class="sub">基于当前进出水浓度计算，去除率 =（进水−出水）/ 进水 × 100%</p></div></div>
+          <div class="table-wrap" id="effTable"></div>
+        </div>
+      </section>
+
+      <!-- 5. AI 预测与预警 -->
+      <section class="page" id="page-ai">
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-head"><div><h3>综合风险指数</h3><p class="sub">AI 实时评估</p></div></div>
+            <div id="riskGauge"></div>
+            <div class="risk-note" id="riskNote"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div><h3>出水 COD 未来 12 小时预测</h3><p class="sub">LSTM 时序模型 · 90% 置信区间</p></div>
+              <span class="tag-ai">AI 预测</span>
+            </div>
+            <div id="forecastChart"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div><h3>异常数据识别</h3><p class="sub">偏离历史分布的监测点</p></div></div>
+            <div id="anomalyList"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>AI 分析结论与建议</h3><p class="sub">自动生成 · 每小时更新</p></div></div>
+            <div class="ai-summary" id="aiSummary"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>预警规则</h3><p class="sub">阈值触发后自动推送至值班人员</p></div></div>
+          <div class="table-wrap" id="ruleTable"></div>
+        </div>
+      </section>
+
+      <!-- 6. 历史数据查询 -->
+      <section class="page" id="page-history">
+        <div class="card">
+          <div class="query-row">
+            <label class="q-item">开始日期<input type="date" id="hStart"></label>
+            <label class="q-item">结束日期<input type="date" id="hEnd"></label>
+            <label class="q-item">统计粒度
+              <select id="hGran">
+                <option value="day">按日</option>
+                <option value="week">按周</option>
+                <option value="month">按月</option>
+              </select>
+            </label>
+            <label class="q-item">监测指标<select id="hInd"></select></label>
+            <button class="btn primary" id="hQuery">查询</button>
+            <button class="btn ghost" id="hExport">导出 CSV</button>
+            <button class="btn ghost" id="hReport">生成报告</button>
+          </div>
+        </div>
+
+        <div class="stat-row" id="hStats"></div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>历史变化趋势</h3><p class="sub" id="hChartSub"></p></div></div>
+          <div id="hChart"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>数据明细</h3><p class="sub" id="hTableSub"></p></div></div>
+          <div class="table-wrap" id="hTable"></div>
+        </div>
+      </section>
+
+      <!-- 7. AI 智能问答 -->
+      <section class="page" id="page-chat">
+        <div class="chat-card">
+          <div class="chat-head">
+            <div class="chat-avatar">AI</div>
+            <div>
+              <strong>污水厂智能助手</strong>
+              <span>已接入实时监测数据、工艺参数与历史记录</span>
+            </div>
+          </div>
+          <div class="chat-msgs" id="chatMsgs"></div>
+          <div class="chat-quick" id="chatQuick"></div>
+          <div class="chat-input-row">
+            <input id="chatInput" placeholder="询问污染物变化原因、工艺问题或异常情况，例如：今天出水 COD 为什么升高？">
+            <button class="btn primary" id="chatSend">发送</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/data.js"></script>
+<script src="js/flow2d.js"></script>
+<script src="js/plan.js"></script>
+<script src="js/scene3d.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
